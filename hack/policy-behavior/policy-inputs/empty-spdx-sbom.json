@@ -1,0 +1,21 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v0.1",
+      "predicateType": "https://spdx.dev/Document",
+      "predicate": {
+        "spdxVersion": "SPDX-2.3",
+        "SPDXID": "SPDXRef-DOCUMENT",
+        "name": "empty-image-sbom",
+        "dataLicense": "CC0-1.0",
+        "documentNamespace": "https://example.com/spdx/empty-image-sbom",
+        "creationInfo": {
+          "created": "2026-09-08T00:00:00Z",
+          "creators": ["Tool: policy-behavior-test"]
+        },
+        "packages": [],
+        "files": []
+      }
+    }
+  }]
+}

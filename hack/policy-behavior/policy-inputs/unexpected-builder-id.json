@@ -1,0 +1,18 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v1",
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://tekton.dev/chains/v2/slsa",
+          "externalParameters": {"runSpec": {"pipelineSpec": {}}},
+          "resolvedDependencies": []
+        },
+        "runDetails": {
+          "builder": {"id": "https://example.invalid/untrusted-builder"}
+        }
+      }
+    }
+  }]
+}

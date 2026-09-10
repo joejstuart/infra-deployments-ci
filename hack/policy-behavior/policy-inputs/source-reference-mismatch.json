@@ -1,0 +1,38 @@
+{
+  "image": {
+    "source": {
+      "git": {
+        "url": "https://github.com/example/expected",
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    }
+  },
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v0.1",
+      "predicateType": "https://slsa.dev/provenance/v0.2",
+      "predicate": {
+        "buildType": "tekton.dev/v1/PipelineRun",
+        "materials": [{
+          "uri": "git+https://github.com/example/material.git",
+          "digest": {"sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}
+        }],
+        "buildConfig": {
+          "tasks": [{
+            "name": "clone-repository",
+            "status": "Succeeded",
+            "ref": {
+              "kind": "Task",
+              "name": "git-clone",
+              "bundle": "quay.io/example/task-git-clone@sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "results": [
+              {"name": "url", "value": "https://github.com/example/cloned"},
+              {"name": "commit", "value": "dddddddddddddddddddddddddddddddddddddddd"}
+            ]
+          }]
+        }
+      }
+    }
+  }]
+}

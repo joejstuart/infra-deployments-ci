@@ -1,0 +1,187 @@
+{
+  "data": ["github.com/release-engineering/rhtap-ec-policy//data"],
+  "tests": [
+    {
+      "name": "insecure-buildah-parameters",
+      "input": "policy-inputs/insecure-buildah-parameters.json",
+      "include": ["@redhat"],
+      "expectedRules": {
+        "violations": [
+          "buildah_build_task.add_capabilities_param",
+          "buildah_build_task.buildah_uses_local_dockerfile",
+          "buildah_build_task.privileged_nested_param"
+        ],
+        "warnings": ["buildah_build_task.disallowed_platform_patterns_pattern"]
+      }
+    },
+    {
+      "name": "non-hermetic-build",
+      "input": "policy-inputs/non-hermetic-build.json",
+      "include": ["hermetic_task"],
+      "expectedRules": {
+        "violations": ["hermetic_task.hermetic"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "permissive-prefetch",
+      "input": "policy-inputs/permissive-prefetch.json",
+      "include": ["prefetch_dependencies"],
+      "expectedRules": {
+        "violations": [
+          "prefetch_dependencies.mode_not_permissive",
+          "prefetch_dependencies.package_registry_proxy_enabled"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "invalid-slsa-v1-materials",
+      "input": "policy-inputs/invalid-slsa-v1-materials.json",
+      "include": ["slsa_source_version_controlled"],
+      "expectedRules": {
+        "violations": [
+          "slsa_source_version_controlled.materials_include_git_sha",
+          "slsa_source_version_controlled.materials_uri_is_git_repo"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "unpinned-rpm-ostree-builder",
+      "input": "policy-inputs/unpinned-rpm-ostree-builder.json",
+      "include": ["rpm_ostree_task"],
+      "expectedRules": {
+        "violations": ["rpm_ostree_task.builder_image_param"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "failed-pipeline-tasks",
+      "input": "policy-inputs/failed-pipeline-tasks.json",
+      "include": [
+        "tasks.successful_pipeline_tasks",
+        "tasks.pinned_task_refs"
+      ],
+      "expectedRules": {
+        "violations": [
+          "tasks.successful_pipeline_tasks",
+          "tasks.pinned_task_refs"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "unexpected-builder-id",
+      "input": "policy-inputs/unexpected-builder-id.json",
+      "include": ["slsa_build_build_service.slsa_builder_id_accepted"],
+      "expectedRules": {
+        "violations": ["slsa_build_build_service.slsa_builder_id_accepted"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "source-reference-mismatch",
+      "input": "policy-inputs/source-reference-mismatch.json",
+      "include": [
+        "provenance_materials.git_clone_source_matches_provenance",
+        "slsa_source_correlated.expected_source_code_reference"
+      ],
+      "expectedRules": {
+        "violations": [
+          "provenance_materials.git_clone_source_matches_provenance",
+          "slsa_source_correlated.expected_source_code_reference"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "invalid-test-results",
+      "input": "policy-inputs/invalid-test-results.json",
+      "include": [
+        "test.no_failed_tests",
+        "test.no_test_warnings",
+        "test.test_results_known"
+      ],
+      "expectedRules": {
+        "violations": [
+          "test.no_failed_tests",
+          "test.test_results_known"
+        ],
+        "warnings": ["test.no_test_warnings"]
+      }
+    },
+    {
+      "name": "empty-spdx-sbom",
+      "input": "policy-inputs/empty-spdx-sbom.json",
+      "include": [
+        "sbom_spdx.contains_packages",
+        "sbom_spdx.contains_files"
+      ],
+      "expectedRules": {
+        "violations": [
+          "sbom_spdx.contains_packages",
+          "sbom_spdx.contains_files"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "unsupported-cyclonedx-version",
+      "input": "policy-inputs/unsupported-cyclonedx-version.json",
+      "include": ["sbom_cyclonedx.cdx_supported_version"],
+      "expectedRules": {
+        "violations": ["sbom_cyclonedx.cdx_supported_version"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "invalid-rpm-pipeline",
+      "input": "policy-inputs/invalid-rpm-pipeline.json",
+      "include": ["rpm_pipeline.invalid_pipeline"],
+      "expectedRules": {
+        "violations": ["rpm_pipeline.invalid_pipeline"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "invalid-rhtap-multi-ci",
+      "input": "policy-inputs/invalid-rhtap-multi-ci.json",
+      "include": ["rhtap_multi_ci.attestation_format"],
+      "expectedRules": {
+        "violations": ["rhtap_multi_ci.attestation_format"],
+        "warnings": []
+      }
+    },
+    {
+      "name": "unsafe-external-parameters",
+      "input": "policy-inputs/unsafe-external-parameters.json",
+      "include": [
+        "external_parameters.pipeline_run_params",
+        "external_parameters.restrict_shared_volumes"
+      ],
+      "expectedRules": {
+        "violations": [
+          "external_parameters.pipeline_run_params",
+          "external_parameters.restrict_shared_volumes"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "name": "unsafe-pre-build-script",
+      "input": "policy-inputs/unsafe-pre-build-script.json",
+      "include": [
+        "pre_build_script_task.pre_build_script_task_runner_image_allowed",
+        "pre_build_script_task.valid_pre_build_script_task_runner_image_ref"
+      ],
+      "expectedRules": {
+        "violations": [
+          "pre_build_script_task.pre_build_script_task_runner_image_allowed",
+          "pre_build_script_task.valid_pre_build_script_task_runner_image_ref"
+        ],
+        "warnings": []
+      }
+    }
+  ]
+}

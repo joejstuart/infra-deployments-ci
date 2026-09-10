@@ -1,0 +1,35 @@
+{
+  "attestations": [
+    {
+      "statement": {
+        "_type": "https://in-toto.io/Statement/v0.1",
+        "subject": [
+          {
+            "name": "quay.io/example/prefetch-output"
+          }
+        ],
+        "predicateType": "https://slsa.dev/provenance/v0.2",
+        "predicate": {
+          "buildType": "tekton.dev/v1/PipelineRun",
+          "buildConfig": {
+            "tasks": [
+              {
+                "name": "prefetch-dependencies",
+                "ref": {
+                  "kind": "Task",
+                  "name": "prefetch-dependencies"
+                },
+                "invocation": {
+                  "parameters": {
+                    "mode": "permissive",
+                    "enable-package-registry-proxy": "false"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

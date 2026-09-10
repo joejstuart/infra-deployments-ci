@@ -1,0 +1,19 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v1",
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://redhat.com/rhtap/slsa-build-types/github-build/v1",
+          "externalParameters": {},
+          "resolvedDependencies": []
+        },
+        "runDetails": {
+          "builder": {},
+          "metadata": {}
+        }
+      }
+    }
+  }]
+}

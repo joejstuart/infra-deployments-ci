@@ -301,7 +301,10 @@ echo "" >&2
 if [[ "$RELEASE_DIR" != "-" ]]; then
     echo "Writing images.json..." >&2
 
-    IMAGES_JSON='{"policy":[],"components":[]}'
+    # expectedChanges is release-specific. Any unacknowledged policy behavior
+    # change makes the release check fail and prints the rule codes to copy here.
+    IMAGES_JSON=$(jq -n --arg effective_time "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+        '{policy: [], components: [], policyBehavior: {effectiveTime: $effective_time, expectedChanges: {}}}')
 
     for entry in "${POLICY_IMAGE_ENTRIES[@]}"; do
         IFS='|' read -r image mirror <<< "$entry"

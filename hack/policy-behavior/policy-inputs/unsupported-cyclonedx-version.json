@@ -1,0 +1,14 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v0.1",
+      "predicateType": "https://cyclonedx.org/bom",
+      "predicate": {
+        "bomFormat": "CycloneDX",
+        "specVersion": "9.9",
+        "version": 1,
+        "components": []
+      }
+    }
+  }]
+}

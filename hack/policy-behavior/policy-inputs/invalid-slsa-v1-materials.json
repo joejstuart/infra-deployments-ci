@@ -1,0 +1,38 @@
+{
+  "attestations": [
+    {
+      "statement": {
+        "_type": "https://in-toto.io/Statement/v1",
+        "subject": [
+          {
+            "name": "quay.io/example/slsa-v1-output"
+          }
+        ],
+        "predicateType": "https://slsa.dev/provenance/v1",
+        "predicate": {
+          "buildDefinition": {
+            "buildType": "https://tekton.dev/chains/v2/slsa",
+            "externalParameters": {
+              "runSpec": {
+                "pipelineSpec": {}
+              }
+            },
+            "resolvedDependencies": [
+              {
+                "uri": "https://example.com/not-a-git-reference",
+                "digest": {
+                  "sha1": "not-a-forty-character-git-commit"
+                }
+              }
+            ]
+          },
+          "runDetails": {
+            "builder": {
+              "id": "https://tekton.dev/chains/v2"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "attestations": [
+    {
+      "statement": {
+        "_type": "https://in-toto.io/Statement/v0.1",
+        "subject": [
+          {
+            "name": "quay.io/example/rpm-ostree-output"
+          }
+        ],
+        "predicateType": "https://slsa.dev/provenance/v0.2",
+        "predicate": {
+          "buildType": "tekton.dev/v1/PipelineRun",
+          "buildConfig": {
+            "tasks": [
+              {
+                "name": "build-rpm-ostree",
+                "ref": {
+                  "kind": "Task",
+                  "name": "rpm-ostree"
+                },
+                "invocation": {
+                  "parameters": {
+                    "BUILDER_IMAGE": "quay.io/example/rpm-ostree-builder:latest"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

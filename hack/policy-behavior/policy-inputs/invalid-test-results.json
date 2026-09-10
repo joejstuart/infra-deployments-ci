@@ -1,0 +1,27 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v0.1",
+      "predicateType": "https://slsa.dev/provenance/v0.2",
+      "predicate": {
+        "buildType": "tekton.dev/v1/PipelineRun",
+        "buildConfig": {
+          "tasks": [
+            {
+              "name": "failed-test",
+              "results": [{"name": "TEST_OUTPUT", "value": "{\"result\":\"FAILURE\",\"failures\":1,\"warnings\":0}"}]
+            },
+            {
+              "name": "warning-test",
+              "results": [{"name": "TEST_OUTPUT", "value": "{\"result\":\"WARNING\",\"failures\":0,\"warnings\":1}"}]
+            },
+            {
+              "name": "unknown-test",
+              "results": [{"name": "TEST_OUTPUT", "value": "{\"result\":\"UNKNOWN\",\"failures\":0,\"warnings\":0}"}]
+            }
+          ]
+        }
+      }
+    }
+  }]
+}

@@ -1,0 +1,25 @@
+{
+  "attestations": [{
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v1",
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://tekton.dev/chains/v2/slsa",
+          "externalParameters": {
+            "runSpec": {
+              "pipelineSpec": {},
+              "params": [{"name": "unexpected-parameter", "value": "unsafe"}],
+              "workspaces": [{
+                "name": "shared-source",
+                "persistentVolumeClaim": {"claimName": "preexisting-data"}
+              }]
+            }
+          },
+          "resolvedDependencies": []
+        },
+        "runDetails": {"builder": {"id": "https://tekton.dev/chains/v2"}}
+      }
+    }
+  }]
+}
